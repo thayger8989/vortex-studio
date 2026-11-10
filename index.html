@@ -350,6 +350,14 @@ document.querySelectorAll('.phone-tab').forEach(function(t){t.classList.remove('
 var tab = document.getElementById('tab-'+app);
 if(tab) tab.classList.add('active');
 drawApp();
+
+// Scroll automático no telemóvel para o simulador
+if(window.innerWidth <= 850) {
+var phoneElement = document.querySelector('.phone-container');
+if(phoneElement) {
+phoneElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+}
 }
 
 /* Gestão */
@@ -432,7 +440,7 @@ MENU.map(function(m,i){
 var q=CART[i]||0;
 return '<div class="os"><span style="max-width:55%"><b>'+m.n+'</b><br><small style="color:var(--mu)">'+m.d+'</small><br><em style="font-size:11px">'+money(m.p)+'</em></span>'+
 '<span class="qty"><button class="minus" onclick="changeQty('+i+',-1)">−</button><b>'+q+'</b><button onclick="changeQty('+i+',1)">+</button></span></div>';
-}).join('')+
+}.join(''))+
 '<div class="os" style="margin-top:12px"><span>Total ('+cartCount()+' itens)</span><em>'+money(cartTotal())+'</em></div>'+
 '<button class="act" style="background:var(--gr)" onclick="sendOrder()">Enviar pedido no WhatsApp</button>';
 }
