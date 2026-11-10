@@ -6,129 +6,137 @@
 <title>Vórtex Studio Premium — Web Apps & Soluções Digitais</title>
 <style>
 :root {
-  --bg: #090a0f;
-  --card: #12141d;
-  --bd: #222634;
-  --tx: #f3f4f6;
-  --mu: #9ca3af;
-  --br: #6366f1;
-  --cy: #22d3ee;
-  --gr: #10b981;
-  --accent: #dc2626;
+--bg: #07080d;
+--card: #11131c;
+--bd: #1f2333;
+--tx: #f3f4f6;
+--mu: #9ca3af;
+--br: #6366f1;
+--cy: #22d3ee;
+--gr: #10b981;
 }
-
 *{box-sizing:border-box;margin:0}
-html{scroll-behavior:smooth;scroll-padding-top:80px;height:100%}
+html{scroll-behavior:smooth;scroll-padding-top:90px;height:100%}
 body{background:var(--bg);color:var(--tx);font-family:Inter,system-ui,sans-serif;line-height:1.6;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);overflow-x:hidden}
 a{color:inherit;text-decoration:none}
 .w{max-width:1100px;margin:0 auto;padding:0 20px}
-
-/* Keyframe Animations */
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(24px); }
-  to { opacity: 1; transform: translateY(0); }
+/* Keyframes */
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes pulseGlow { 0%, 100% { box-shadow: 0 0 15px rgba(99,102,241,0.25); } 50% { box-shadow: 0 0 25px rgba(34,211,238,0.4); } }
+/* Header Flutuante */
+header{position:fixed;top:16px;left:0;right:0;z-index:1000;display:flex;justify-content:center}
+header .hdr-w{width:calc(100% - 32px);max-width:1100px;background:rgba(17,19,28,0.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,0.1);border-radius:20px;display:flex;align-items:center;justify-content:space-between;padding:12px 20px;box-shadow:0 10px 30px rgba(0,0,0,0.5)}
+.logo{font-weight:900;letter-spacing:.1em;font-size:16px}.logo small{display:block;font-size:9px;color:var(--br);letter-spacing:.3em;margin-top:-2px}
+nav{display:flex;gap:24px;font-size:14px;color:var(--mu);font-weight:500}
+nav a{transition:color .2s}nav a:hover{color:var(--tx)}
+.hdr-btn{display:flex;gap:10px;align-items:center}
+.menu-btn{display:none;background:none;border:none;color:#fff;font-size:24px;cursor:pointer}
+@media(max-width:850px){
+nav{display:none}
+.menu-btn{display:block}
 }
-
-@keyframes pulseGlow {
-  0%, 100% { box-shadow: 0 0 15px rgba(99,102,241,0.3); }
-  50% { box-shadow: 0 0 25px rgba(34,211,238,0.5); }
-}
-
-@keyframes floatPhone {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-}
-
-/* Header */
-header{position:sticky;top:env(safe-area-inset-top,0px);background:rgba(9,10,15,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--bd);z-index:10}
-header .w{display:flex;align-items:center;justify-content:space-between;height:64px}
-.logo{font-weight:900;letter-spacing:.1em;transition:transform .3s ease}.logo:hover{transform:scale(1.03)}
-.logo small{display:block;font-size:10px;color:var(--br);letter-spacing:.3em;margin-top:-4px}
-nav{display:flex;gap:20px;font-size:14px;color:var(--mu)}
-nav a{transition:color .2s ease}
-nav a:hover{color:var(--tx)}
-@media(max-width:850px){nav{display:none}}
-
-/* Buttons & Links */
-.btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 22px;border-radius:12px;font-weight:700;background:linear-gradient(90deg,#4f46e5,#6366f1);color:#fff;transition:transform .2s ease, box-shadow .2s ease;cursor:pointer}
+/* Mobile Drawer */
+.drawer{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(7,8,13,0.95);backdrop-filter:blur(20px);z-index:999;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:24px;font-size:20px;font-weight:700;transform:translateY(-100%);transition:transform .3s cubic-bezier(0.16, 1, 0.3, 1)}
+.drawer.open{transform:translateY(0)}
+.drawer a{color:var(--tx)}.drawer .close-btn{position:absolute;top:24px;right:24px;font-size:28px;background:none;border:none;color:var(--mu);cursor:pointer}
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 20px;border-radius:12px;font-weight:700;font-size:14px;background:linear-gradient(90deg,#4f46e5,#6366f1);color:#fff;transition:all .2s ease;cursor:pointer;border:none}
 .btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(99,102,241,0.4)}
 .btn.g{background:var(--gr)}.btn.g:hover{box-shadow:0 8px 20px rgba(16,185,129,0.4)}
-.btn.ig{background:linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);color:#fff}.btn.ig:hover{box-shadow:0 8px 20px rgba(220,39,67,0.4)}
-
-/* Hero Section */
-.hero{text-align:center;padding:70px 0 50px;animation:fadeInUp .8s cubic-bezier(0.16, 1, 0.3, 1)}
-.tag{display:inline-block;font-size:12px;padding:6px 14px;border-radius:99px;border:1px solid rgba(99,102,241,.4);background:rgba(99,102,241,.1);color:#a5b4fc;margin-bottom:22px;animation:pulseGlow 4s infinite}
-h1{font-size:clamp(32px,6vw,60px);line-height:1.1;font-weight:800}
+.btn.ig{background:linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888)}.btn.ig:hover{box-shadow:0 8px 20px rgba(220,39,67,0.4)}
+.btn.outline{background:transparent;border:1px solid var(--bd);color:var(--tx)}.btn.outline:hover{border-color:var(--br);background:rgba(99,102,241,0.1)}
+/* Hero */
+.hero{text-align:center;padding:140px 0 60px;animation:fadeInUp .8s cubic-bezier(0.16, 1, 0.3, 1)}
+.tag{display:inline-block;font-size:12px;padding:6px 16px;border-radius:99px;border:1px solid rgba(99,102,241,.4);background:rgba(99,102,241,.1);color:#a5b4fc;margin-bottom:22px;animation:pulseGlow 4s infinite}
+h1{font-size:clamp(32px,6vw,58px);line-height:1.15;font-weight:800;letter-spacing:-0.02em}
 h1 span{background:linear-gradient(90deg,#6366f1,var(--cy));-webkit-background-clip:text;background-clip:text;color:transparent}
-.hero p{color:var(--mu);max-width:640px;margin:20px auto 0;font-size:18px}
-.cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:30px}
-
+.hero p{color:var(--mu);max-width:640px;margin:20px auto 0;font-size:17px}
+.cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:32px}
 /* Stats */
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:16px;margin-top:50px;padding-top:30px;border-top:1px solid var(--bd)}
-.stats div{transition:transform .3s ease}.stats div:hover{transform:translateY(-4px)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:16px;margin-top:60px;padding-top:30px;border-top:1px solid var(--bd)}
 .stats b{display:block;font-size:26px}.stats small{color:var(--mu);font-size:11px;text-transform:uppercase;letter-spacing:.08em}
-
-/* Cards & Grid */
-section{padding:60px 0}
+/* Sections */
+section{padding:70px 0}
 .alt{background:var(--card);border-block:1px solid var(--bd)}
 h2{font-size:clamp(24px,4vw,34px);text-align:center}
-.sub{text-align:center;color:var(--mu);margin:10px auto 36px;max-width:560px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
-.c{background:var(--bg);border:1px solid var(--bd);border-radius:16px;padding:22px;transition:transform .3s ease, border-color .3s ease, box-shadow .3s ease}
-.c:hover{transform:translateY(-5px);border-color:var(--br);box-shadow:0 10px 25px rgba(0,0,0,0.3)}
-.c h3{margin-bottom:6px}.c p{color:var(--mu);font-size:14px}
-
+.sub{text-align:center;color:var(--mu);margin:10px auto 40px;max-width:580px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
+.c{background:var(--bg);border:1px solid var(--bd);border-radius:18px;padding:24px;transition:all .3s ease;display:flex;flex-direction:column;justify-content:space-between}
+.c:hover{transform:translateY(-4px);border-color:var(--br);box-shadow:0 12px 30px rgba(0,0,0,0.4)}
+.c h3{margin-bottom:8px;font-size:18px}.c p{color:var(--mu);font-size:14px;line-height:1.6}
 /* Interactive Phone Mockup */
-.demo{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center}
-@media(max-width:800px){.demo{grid-template-columns:1fr}}
-.phone{max-width:300px;margin:auto;background:#000;border:6px solid #2a2d3d;border-radius:38px;padding:10px;animation:floatPhone 6s ease-in-out infinite;box-shadow:0 20px 40px rgba(0,0,0,0.5)}
-.scr{background:#0d0d0d;border-radius:28px;height:480px;overflow:hidden;position:relative;display:flex;flex-direction:column}
-.ah{background:#111;border-bottom:2px solid #dc2626;padding:14px;position:sticky;top:0;font-weight:800;letter-spacing:.1em;display:flex;align-items:center}
-.ah small{display:block;color:#f87171;font-size:8px;letter-spacing:.25em}
-.ab{padding:12px;flex:1;overflow:auto}
-.m{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.m div,.q button{background:#1a1a1a;border:1px solid rgba(220,38,38,.35);border-radius:12px;padding:10px;font-size:11px;color:#fff;font-family:inherit;transition:background .2s}
-.m div:hover,.q button:hover{background:#252525}
-.m b{display:block;font-size:17px}
-.q{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.q button{cursor:pointer}.q button.on{background:#dc2626}
-.os{background:#1a1a1a;border-radius:10px;padding:9px 11px;font-size:11px;margin-top:6px;display:flex;justify-content:space-between;transition:background .2s}
-.os[data-a]:hover{background:#242424}
-.os em{font-style:normal;color:#f87171}
-.bk{background:none;border:0;color:#fff;font-size:22px;margin-right:8px;cursor:pointer}
-.bn{display:grid;grid-template-columns:repeat(5,1fr);background:#111;border-top:1px solid #333}
-.bn button{background:none;border:0;color:#9ca3af;font-size:9px;padding:8px 0;cursor:pointer;font-family:inherit;transition:color .2s}
-.bn button span{display:block;font-size:16px}.bn .on{color:#f87171}
-.sb{display:flex;gap:6px;margin-bottom:8px}.sb button{flex:1;background:#1a1a1a;border:1px solid #333;color:#fff;border-radius:8px;padding:6px;font-size:10px;cursor:pointer}.sb .on{background:#dc2626;border-color:#dc2626}
-.act{width:100%;margin-top:12px;background:#dc2626;color:#fff;border:0;border-radius:10px;padding:11px;font-weight:700;cursor:pointer;font-family:inherit;transition:background .2s}
-.act:hover{background:#b91c1c}
-.ch{display:inline-block;margin:3px;padding:7px 11px;border-radius:99px;border:1px solid #444;font-size:11px;cursor:pointer}.ch.on{background:#dc2626;border-color:#dc2626}
-.st button{background:#333;color:#fff;border:0;border-radius:6px;width:22px;height:22px;cursor:pointer}
-.ok{color:#34d399;font-size:12px;margin-top:12px}
-#tst{position:absolute;left:50%;bottom:64px;transform:translateX(-50%);background:#fff;color:#000;font-size:11px;padding:8px 14px;border-radius:99px;opacity:0;transition:opacity .3s;pointer-events:none;white-space:nowrap}
-
+.demo{display:grid;grid-template-columns:1fr 1.1fr;gap:40px;align-items:center}
+@media(max-width:850px){.demo{grid-template-columns:1fr}}
+.phone-container{display:flex;flex-direction:column;align-items:center}
+.phone-nav-tabs{display:flex;gap:8px;background:rgba(255,255,255,0.05);padding:6px;border-radius:14px;margin-bottom:16px;border:1px solid var(--bd)}
+.phone-tab{background:none;border:none;color:var(--mu);padding:8px 14px;border-radius:10px;font-weight:600;font-size:12px;cursor:pointer;transition:all .2s}
+.phone-tab.active{background:var(--br);color:#fff}
+.phone{width:100%;max-width:320px;background:#000;border:8px solid #252836;border-radius:42px;padding:12px;box-shadow:0 25px 50px rgba(0,0,0,0.6)}
+.scr{background:#0d0e15;border-radius:30px;height:500px;overflow:hidden;position:relative;display:flex;flex-direction:column}
+.ah{background:#12141f;border-bottom:1px solid #262a3d;padding:14px;font-weight:800;letter-spacing:.05em;display:flex;align-items:center}
+.ah small{display:block;color:var(--cy);font-size:9px;letter-spacing:.2em}
+.ab{padding:14px;flex:1;overflow:auto}
+.os{background:#181b28;border-radius:12px;padding:10px 12px;font-size:12px;margin-top:8px;display:flex;justify-content:space-between;align-items:center;border:1px solid rgba(255,255,255,0.05)}
+.os em{font-style:normal;color:var(--cy);font-weight:700}
+.act{width:100%;margin-top:14px;background:var(--br);color:#fff;border:0;border-radius:12px;padding:12px;font-weight:700;cursor:pointer;font-family:inherit;transition:background .2s}
+.act:hover{opacity:.9}
+#tst{position:absolute;left:50%;bottom:64px;transform:translateX(-50%);background:#fff;color:#000;font-size:11px;font-weight:700;padding:8px 16px;border-radius:99px;opacity:0;transition:opacity .3s;pointer-events:none;white-space:nowrap;z-index:10}
+/* Itens interativos do protótipo */
+.lbl{font-size:11px;color:var(--mu);margin-bottom:6px}
+.os.tap{cursor:pointer;transition:border-color .2s}
+.os.tap:hover{border-color:var(--br)}
+.badge{display:inline-block;font-size:9px;font-weight:700;padding:2px 8px;border-radius:99px;margin-top:3px}
+.chip{flex:1;padding:8px;border-radius:8px;border:1px solid #333;color:#fff;font-family:inherit;font-size:12px;font-weight:600;cursor:pointer;transition:all .2s}
+.chip:hover{border-color:var(--br)}
+.times{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:12px}
+.qty{display:flex;align-items:center;gap:8px}
+.qty button{width:24px;height:24px;border-radius:8px;border:0;background:var(--br);color:#fff;font-weight:800;cursor:pointer;font-family:inherit}
+.qty button.minus{background:#262a3d}
+.qty b{min-width:14px;text-align:center;font-size:12px}
+/* Modal */
+.modal-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);backdrop-filter:blur(10px);z-index:2000;display:none;align-items:center;justify-content:center;padding:20px}
+.modal-card{background:var(--card);border:1px solid var(--bd);border-radius:24px;padding:32px;max-width:480px;width:100%;position:relative}
+.modal-close{position:absolute;top:20px;right:20px;background:none;border:none;color:var(--mu);font-size:24px;cursor:pointer}
+.form-group{margin-bottom:16px}
+.form-group label{display:block;font-size:13px;font-weight:600;margin-bottom:6px;color:var(--tx)}
+.form-group input, .form-group textarea, .form-group select{width:100%;background:var(--bg);border:1px solid var(--bd);border-radius:10px;padding:12px;color:#fff;font-family:inherit;font-size:14px}
+.form-group input:focus, .form-group textarea:focus{outline:none;border-color:var(--br)}
 /* FAQ & Footer */
-details{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:14px 18px;margin-bottom:10px;transition:border-color .2s}
+details{background:var(--bg);border:1px solid var(--bd);border-radius:14px;padding:16px 20px;margin-bottom:12px;transition:border-color .2s}
 details:hover{border-color:var(--br)}
-summary{cursor:pointer;font-weight:600}details p{color:var(--mu);margin-top:8px;font-size:14px}
+summary{cursor:pointer;font-weight:600}details p{color:var(--mu);margin-top:10px;font-size:14px}
 footer{border-top:1px solid var(--bd);padding:40px 0;text-align:center;color:var(--mu);font-size:13px}
 .contact-bar{display:flex;gap:20px;justify-content:center;align-items:center;flex-wrap:wrap;margin:16px 0}
-.contact-link{color:var(--tx);font-weight:600;transition:color .2s ease}.contact-link:hover{color:var(--cy)}
+.contact-link{color:var(--tx);font-weight:600;transition:color .2s}.contact-link:hover{color:var(--cy)}
 </style>
 </head>
 <body>
-
-<header><div class="w">
+<!-- Header Flutuante -->
+<header>
+<div class="hdr-w">
 <a href="#" class="logo">VÓRTEX<small>STUDIO PREMIUM</small></a>
 <nav>
-  <a href="#demos">Demonstrações</a>
-  <a href="#vantagens">Por que Web Apps?</a>
-  <a href="#solucoes">Soluções</a>
-  <a href="#contato">Contato</a>
-  <a href="#faq">Dúvidas</a>
+<a href="#demos">Demonstrações</a>
+<a href="#solucoes">Soluções</a>
+<a href="#vantagens">Vantagens</a>
+<a href="#faq">Dúvidas</a>
 </nav>
+<div class="hdr-btn">
 <a class="btn" href="https://wa.me/5571984341024?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20V%C3%B3rtex%20Studio%20e%20gostaria%20de%20um%20or%C3%A7amento." target="_blank" rel="noopener">Orçamento</a>
-</div></header>
-
+<button class="menu-btn" onclick="toggleDrawer()" aria-label="Abrir menu">☰</button>
+</div>
+</div>
+</header>
+<!-- Mobile Drawer -->
+<div class="drawer" id="mobileDrawer">
+<button class="close-btn" onclick="toggleDrawer()" aria-label="Fechar menu">✕</button>
+<a href="#demos" onclick="toggleDrawer()">Demonstrações</a>
+<a href="#solucoes" onclick="toggleDrawer()">Soluções</a>
+<a href="#vantagens" onclick="toggleDrawer()">Vantagens</a>
+<a href="#faq" onclick="toggleDrawer()">Dúvidas</a>
+<a class="btn g" href="https://wa.me/5571984341024?text=Ol%C3%A1!%20Quero%20um%20or%C3%A7amento." target="_blank" rel="noopener" style="margin-top:20px">Pedir Orçamento</a>
+</div>
+<!-- Hero Section -->
 <div class="w hero">
 <span class="tag">Desenvolvimento inteligente de Web Apps</span>
 <h1>A tecnologia do seu negócio na <span>palma da mão</span> dos seus clientes.</h1>
@@ -143,121 +151,289 @@ footer{border-top:1px solid var(--bd);padding:40px 0;text-align:center;color:var
 <div><b>Rápido</b><small>Carregamento leve</small></div>
 <div><b>Multi</b><small>Android, iOS e PC</small></div>
 <div><b>Sob medida</b><small>Para o seu segmento</small></div>
-</div></div>
-
+</div>
+</div>
+<!-- Interactive Demos -->
 <section id="demos" class="alt"><div class="w">
 <h2>Experimente na prática</h2>
-<p class="sub">Toque nos menus do app ao lado: abra ordens, mexa no estoque, veja clientes e pós-venda.</p>
+<p class="sub">Alterne entre os modelos no topo do celular e teste o funcionamento em tempo real.</p>
 <div class="demo">
 <div>
-<div class="c" style="border-color:var(--br)"><h3>Digão Estética Automotiva</h3><p>Painel para estéticas e lava-jatos: pátio, ordens de serviço, faturamento e agendamentos.</p><a class="btn" style="margin-top:14px" href="digao.html" target="_blank">Abrir demo completa →</a></div>
-<div class="c" style="margin-top:14px;opacity:.8"><h3>Barbearia — Agendamentos <small style="color:var(--mu)">(em breve)</small></h3><p>Agendamento online com escolha de profissional, horário e Pix.</p><a class="btn g" style="margin-top:14px" href="https://wa.me/5571984341024?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20o%20app%20de%20agendamento%20para%20barbearia." target="_blank" rel="noopener">Quero um assim</a></div>
-<div class="c" style="margin-top:14px;opacity:.8"><h3>Cardápio & Pedidos Web <small style="color:var(--mu)">(em breve)</small></h3><p>Cardápio digital com pedido formatado direto para o WhatsApp.</p><a class="btn g" style="margin-top:14px" href="https://wa.me/5571984341024?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20o%20card%C3%A1pio%20digital%20com%20pedidos." target="_blank" rel="noopener">Quero um assim</a></div>
+<div class="c" style="border-color:var(--br)">
+<div>
+<span style="font-size:11px;color:var(--cy);font-weight:700;text-transform:uppercase">Protótipos Ativos</span>
+<h3 style="margin-top:4px">Navegue pelas 3 Soluções</h3>
+<p>Experimente a gestão de pátio automotivo, o agendamento de clientes para barbearia ou o fluxo de pedidos de um cardápio digital.</p>
 </div>
-<div class="phone"><div class="scr" id="scr"><div class="ah" id="ah"></div><div class="ab" id="ab"></div><div class="bn" id="bn"></div><div id="tst"></div></div></div>
-</div></div></section>
-
-<section id="vantagens"><div class="w">
-<h2>Por que Web Apps?</h2><p class="sub">Todo o poder de um app, sem as barreiras das lojas.</p>
-<div class="grid">
-<div class="c"><h3>Sem instalação</h3><p>O cliente abre por um link ou adiciona à tela inicial.</p></div>
-<div class="c"><h3>Atualização instantânea</h3><p>Corrigiu ou melhorou? Todos veem na hora.</p></div>
-<div class="c"><h3>Custo menor</h3><p>Uma base de código atende Android, iOS e computador.</p></div>
-<div class="c"><h3>Rápido de lançar</h3><p>Do protótipo ao ar em muito menos tempo.</p></div>
-</div></div></section>
-
-<section id="solucoes" class="alt"><div class="w">
-<h2>Soluções</h2><p class="sub">Feitas sob medida para o seu segmento.</p>
-<div class="grid">
-<div class="c"><h3>Gestão e painéis</h3><p>OS, estoque, clientes, pós-venda e faturamento.</p></div>
-<div class="c"><h3>Agendamento online</h3><p>Horários, profissionais e pagamento antecipado via Pix.</p></div>
-<div class="c"><h3>Cardápio digital</h3><p>Pedidos organizados e enviados ao WhatsApp.</p></div>
-<div class="c"><h3>Seu projeto</h3><p>Tem outra ideia? Conversamos e desenhamos juntos.</p></div>
-</div></div></section>
-
-<section id="contato"><div class="w" style="text-align:center">
-<h2>Fale Conosco</h2>
-<p class="sub">Entre em contato direto pelos nossos canais oficiais:</p>
-<div class="contact-bar">
-  <a class="contact-link" href="https://instagram.com/Vortex.studio.premium" target="_blank" rel="noopener">📸 @Vortex.studio.premium</a>
-  <a class="contact-link" href="mailto:Vortexstudiopremium@gmail.com">✉️ Vortexstudiopremium@gmail.com</a>
-  <a class="contact-link" href="https://wa.me/5571984341024" target="_blank" rel="noopener">📱 (71) 98434-1024</a>
+<div style="margin-top:20px;display:flex;gap:10px;flex-wrap:wrap">
+<button class="btn outline" onclick="switchApp('gestao')">Ver Gestão</button>
+<button class="btn outline" onclick="switchApp('agendamento')">Ver Agendamento</button>
+<button class="btn outline" onclick="switchApp('cardapio')">Ver Cardápio</button>
+</div>
+</div>
+<div class="c" style="margin-top:16px;background:rgba(99,102,241,0.05);border-color:rgba(99,102,241,0.2)">
+<div>
+<h3>Tem outra ideia de projeto?</h3>
+<p>Desenvolvemos sistemas personalizados de acordo com a necessidade operacional da sua empresa.</p>
+</div>
+<button class="btn g" style="margin-top:14px" onclick="openModal()">Solicitar análise de projeto →</button>
+</div>
+</div>
+<!-- Phone Simulador -->
+<div class="phone-container">
+<div class="phone-nav-tabs">
+<button class="phone-tab active" id="tab-gestao" onclick="switchApp('gestao')">Gestão</button>
+<button class="phone-tab" id="tab-agendamento" onclick="switchApp('agendamento')">Agendamento</button>
+<button class="phone-tab" id="tab-cardapio" onclick="switchApp('cardapio')">Cardápio</button>
+</div>
+<div class="phone">
+<div class="scr" id="scr">
+<div class="ah" id="ah"></div>
+<div class="ab" id="ab"></div>
+<div id="tst"></div>
+</div>
+</div>
+</div>
 </div>
 </div></section>
-
-<section id="faq" class="alt"><div class="w" style="max-width:720px">
-<h2 style="margin-bottom:28px">Dúvidas frequentes</h2>
-<details><summary>Preciso publicar na App Store ou Play Store?</summary><p>Não. O web app roda no navegador e pode ser salvo na tela inicial como um app.</p></details>
-<details><summary>Funciona em qualquer celular?</summary><p>Sim, em Android, iOS e computadores.</p></details>
-<details><summary>Posso testar antes de contratar?</summary><p>Sim. Montamos uma demonstração com a cara do seu negócio para você experimentar.</p></details>
-<details><summary>Como peço um orçamento?</summary><p>Chame no WhatsApp (71) 98434-1024, envie um e-mail ou mande uma mensagem no Instagram!</p></details>
+<!-- Commercial Solutions Section -->
+<section id="solucoes"><div class="w">
+<h2>Soluções para o seu Negócio</h2>
+<p class="sub">Desenvolvemos a estrutura exata para transformar o atendimento e a gestão da sua empresa.</p>
+<div class="grid">
+<div class="c">
+<div>
+<h3>Gestão e Painéis de Controle</h3>
+<p>Centralize ordens de serviço, controle de pátio ou estoque, faturamento diário e histórico de clientes em um painel rápido e acessível em qualquer lugar.</p>
+</div>
+</div>
+<div class="c">
+<div>
+<h3>Agendamento Online Automático</h3>
+<p>Elimine a troca de mensagens para marcar horários. O seu cliente escolhe o profissional, o serviço e o horário vago, com confirmação direta via Pix.</p>
+</div>
+</div>
+<div class="c">
+<div>
+<h3>Cardápio & Pedidos Web</h3>
+<p>Apresente os seus produtos em um menu digital interativo. Os pedidos chegam organizados, calculados e formatados diretamente no seu WhatsApp.</p>
+</div>
+</div>
+<div class="c" style="border-color:var(--br)">
+<div>
+<h3>Seu Projeto Sob Medida</h3>
+<p>Tem um fluxo de trabalho específico ou uma ideia única? Desenhamos a arquitetura do aplicativo web exatamente como o seu negócio precisa.</p>
+</div>
+<button class="btn" style="margin-top:16px" onclick="openModal()">Enviar ideia de projeto</button>
+</div>
+</div>
+</div></section>
+<!-- Advantages -->
+<section id="vantagens" class="alt"><div class="w">
+<h2>Por que escolher um Web App?</h2>
+<p class="sub">Todo o poder e presença de uma aplicação, sem a burocracia e custos das lojas de apps.</p>
+<div class="grid">
+<div class="c"><h3>Sem Instalação</h3><p>O seu cliente acessa instantaneamente através de um link ou QR Code e pode adicionar à tela inicial com um toque.</p></div>
+<div class="c"><h3>Atualização Instantânea</h3><p>Qualquer alteração de preço, serviço ou melhoria fica disponível no mesmo segundo para todos os usuários.</p></div>
+<div class="c"><h3>Custo-Benefício</h3><p>Uma única base de código funciona perfeitamente em iPhones, Androids, tablets e computadores.</p></div>
+<div class="c"><h3>Lançamento Rápido</h3><p>Coloque a sua solução para rodar em produção em uma fração do tempo de um app tradicional.</p></div>
+</div>
+</div></section>
+<!-- FAQ -->
+<section id="faq"><div class="w" style="max-width:720px">
+<h2 style="margin-bottom:28px">Dúvidas Frequentes</h2>
+<details><summary>Preciso publicar na App Store ou Play Store?</summary><p>Não. O Web App funciona diretamente no navegador e pode ser salvo no celular como uma aplicação nativa.</p></details>
+<details><summary>Funciona em qualquer dispositivo?</summary><p>Sim! É 100% compatível com Android, iOS (iPhone), tablets e computadores.</p></details>
+<details><summary>Posso testar uma demonstração antes de fechar?</summary><p>Sim. Criamos um protótipo com a estrutura do seu negócio para experimentar na prática antes do desenvolvimento final.</p></details>
+<details><summary>Como solicito um orçamento?</summary><p>Pode clicar em "Pedir orçamento no WhatsApp" ou preencher a análise de projeto aqui no site.</p></details>
 <div style="text-align:center;margin-top:30px"><a class="btn g" href="https://wa.me/5571984341024?text=Ol%C3%A1!%20Quero%20um%20or%C3%A7amento." target="_blank" rel="noopener">Pedir orçamento no WhatsApp</a></div>
 </div></section>
-
+<!-- Modal Seu Projeto -->
+<div class="modal-overlay" id="projectModal" onclick="if(event.target===this)closeModal()">
+<div class="modal-card">
+<button class="modal-close" onclick="closeModal()" aria-label="Fechar">✕</button>
+<h3 style="font-size:20px;margin-bottom:8px">Análise de Projeto Sob Medida</h3>
+<p style="color:var(--mu);font-size:13px;margin-bottom:20px">Preencha os detalhes da sua ideia e enviaremos uma proposta técnica diretamente no seu WhatsApp.</p>
+<div class="form-group">
+<label>Seu Nome ou Empresa</label>
+<input type="text" id="projName" placeholder="Ex: João da Silva / Barbearia X">
+</div>
+<div class="form-group">
+<label>Tipo de Negócio</label>
+<select id="projType">
+<option value="Estética Automotiva / Lava-Jato">Estética Automotiva / Lava-Jato</option>
+<option value="Barbearia / Salão / Estética">Barbearia / Salão / Estética</option>
+<option value="Restaurante / Delivery">Restaurante / Delivery</option>
+<option value="Outro segmento">Outro segmento personalizado</option>
+</select>
+</div>
+<div class="form-group">
+<label>Descreva brevemente o que precisa</label>
+<textarea id="projDesc" rows="3" placeholder="Ex: Preciso de um sistema onde meus clientes agendem horários e eu consiga ver meu faturamento diário..."></textarea>
+</div>
+<button class="btn g" style="width:100%" onclick="sendProjectProposal()">Enviar para Análise via WhatsApp →</button>
+</div>
+</div>
 <footer>
-  <div class="w">
-    <p>© 2026 Vórtex Studio Premium — Todos os direitos reservados.</p>
-    <div class="contact-bar" style="font-size:12px;margin-top:10px">
-      <span>Instagram: <b>@Vortex.studio.premium</b></span> | 
-      <span>E-mail: <b>Vortexstudiopremium@gmail.com</b></span>
-    </div>
-  </div>
+<div class="w">
+<p>© 2026 Vórtex Studio Premium — Todos os direitos reservados.</p>
+<div class="contact-bar" style="font-size:12px;margin-top:10px">
+<span>Instagram: <b>@Vortex.studio.premium</b></span> |
+<span>E-mail: <b>Vortexstudiopremium@gmail.com</b></span>
+</div>
+</div>
 </footer>
-
 <script>
-var OS=[{id:101,c:'HB20',s:'Polimento',v:450,st:0},{id:102,c:'Onix',s:'Vitrificação',v:1200,st:1},{id:103,c:'Corolla',s:'Lavagem completa',v:180,st:2},{id:104,c:'Compass',s:'Higienização',v:320,st:0},{id:105,c:'Strada',s:'Cristalização',v:600,st:1}];
-var EST=[['Shampoo automotivo',8,5],['Cera de carnaúba',3,5],['Pano de microfibra',24,10],['Vitrificador',2,3],['Polidor',6,4]];
-var CLI=[{n:'Marcos S.',v:'Honda Civic',h:3,t:'Polimento, lavagem'},{n:'Juliana R.',v:'Jeep Compass',h:5,t:'Vitrificação'},{n:'Carlos P.',v:'Fiat Strada',h:1,t:'Lavagem simples'}];
-var PV=[{n:'Marcos S.',m:'Perguntar sobre o polimento',d:0},{n:'Juliana R.',m:'Oferecer revisão da vitrificação',d:0},{n:'Carlos P.',m:'Pedir avaliação',d:1}];
-var SV=['Lavagem','Polimento','Vitrificação','Higienização'],PR=[80,450,1200,320];
-var C=['ini','os','est','cli','pv'],N=['Início','Ordens','Estoque','Clientes','Pós-venda'],I=['🏠','📋','📦','👥','⭐'];
-var SU={os:['Aguardando','Em andamento','Finalizadas'],est:['Todos','Baixo'],pv:['Retornos','Feitos']};
-var ST=['Aguardando','Em andamento','Finalizada'];
-var S={t:'ini',s:0,d:null};
-function R(v){return 'R$ '+v.toLocaleString('pt-BR')}
-function row(a,i,l,r){return '<div class="os" data-a="'+a+'" data-i="'+i+'"><span>'+l+'</span><em>'+r+'</em></div>'}
-function kv(a,b){return '<div class="os"><span>'+a+'</span><em>'+b+'</em></div>'}
-function none(){return '<p style="font-size:11px;color:#9ca3af;margin-top:10px">Nada por aqui.</p>'}
-function toast(m){var e=document.getElementById('tst');e.textContent=m;e.style.opacity=1;setTimeout(function(){e.style.opacity=0},1500)}
-function draw(){
-var d=S.d,t=S.t,h='';
-if(d){
-if(d.k=='os'){var o=OS[d.i];h='<h6>OS #'+o.id+'</h6>'+kv(o.c,o.s)+kv('Valor',R(o.v))+kv('Status',ST[o.st])+(o.st<2?'<button class="act" data-a="adv" data-i="'+d.i+'">'+(o.st?'Finalizar serviço':'Iniciar atendimento')+'</button>':'<p class="ok">✔ Serviço concluído</p>')}
-else if(d.k=='cli'){var c=CLI[d.i];h='<h6>'+c.n+'</h6>'+kv('Veículo',c.v)+kv('Visitas',c.h)+kv('Serviços',c.t)+'<button class="act" data-a="tst">Agendar retorno</button>'}
-else if(d.k=='new'){h='<h6>Nova ordem de serviço</h6><p style="font-size:11px;margin-bottom:6px">Escolha o serviço:</p>'+SV.map(function(x,i){return '<span class="ch'+(i==d.sv?' on':'')+'" data-a="sv" data-i="'+i+'">'+x+'</span>'}).join('')+kv('Valor',R(PR[d.sv]))+'<button class="act" data-a="mk">Criar OS</button>'}
-else{h='<h6>Agenda de hoje</h6>'+kv('14:00 • Civic','Higienização')+kv('15:30 • Compass','Cristalização')+kv('17:00 • Strada','Lavagem')}
-}else if(t=='ini'){
-var fat=2000+OS.reduce(function(a,o){return a+(o.st==2?o.v:0)},0),n=OS.filter(function(o){return o.st==1}).length;
-h='<h6>Painel geral — hoje</h6><div class="m"><div data-a="tab" data-i="1">Faturamento<b>'+R(fat)+'</b><span style="color:#34d399">↑ 12,5%</span></div><div data-a="pat">No pátio<b>'+n+' veículos</b><span style="color:#f87171">Toque para ver</span></div></div><h6>Ações rápidas</h6><div class="q"><button data-a="new">+ Nova OS</button><button data-a="ag">Agenda</button><button data-a="tab" data-i="3">Clientes</button></div><h6>Pátio agora</h6>'+(OS.map(function(o,i){return o.st==1?row('os',i,o.c+' • '+o.s,R(o.v)):''}).join('')||none())
-}else{
-if(SU[t])h+='<div class="sb">'+SU[t].map(function(x,i){return '<button data-a="sb" data-i="'+i+'" class="'+(i==S.s?'on':'')+'">'+x+'</button>'}).join('')+'</div>';
-var l='';
-if(t=='os')l=OS.map(function(o,i){return o.st==S.s?row('os',i,o.c+' • '+o.s,R(o.v)):''}).join('');
-if(t=='est')l=EST.map(function(e,i){return (S.s&&e[1]>=e[2])?'':'<div class="os"><span>'+e[0]+'<br><small style="color:'+(e[1]<e[2]?'#f87171':'#9ca3af')+'">mín. '+e[2]+(e[1]<e[2]?' • baixo':'')+'</small></span><span class="st"><button data-a="m" data-i="'+i+'">−</button> '+e[1]+' <button data-a="p" data-i="'+i+'">+</button></span></div>'}).join('');
-if(t=='cli')l=CLI.map(function(c,i){return row('cli',i,c.n,c.v)}).join('');
-if(t=='pv')l=PV.map(function(p,i){return p.d==S.s?row('pv',i,p.n+'<br><small>'+p.m+'</small>',S.s?'↺ desfazer':'✔ feito'):''}).join('');
-h+=l||none()}
-document.getElementById('ah').innerHTML=(d?'<button class="bk" data-a="back">‹</button>':'')+'<div>DIGÃO<small>ESTÉTICA AUTOMOTIVA</small></div>';
-document.getElementById('ab').innerHTML=h;
-document.getElementById('bn').innerHTML=C.map(function(c,i){return '<button data-a="tab" data-i="'+i+'" class="'+(c==t&&!d?'on':'')+'"><span>'+I[i]+'</span>'+N[i]+'</button>'}).join('')}
-document.getElementById('scr').onclick=function(e){var b=e.target.closest('[data-a]');if(!b)return;var a=b.dataset.a,i=+b.dataset.i;
-if(a=='tab')S={t:C[i],s:0,d:null};
-else if(a=='back')S.d=null;
-else if(a=='sb')S.s=i;
-else if(a=='os'||a=='cli')S.d={k:a,i:i};
-else if(a=='new')S.d={k:'new',sv:0};
-else if(a=='ag')S.d={k:'ag'};
-else if(a=='pat')S={t:'os',s:1,d:null};
-else if(a=='adv'){OS[i].st++;toast(OS[i].st==2?'Serviço finalizado ✔':'Atendimento iniciado')}
-else if(a=='sv')S.d.sv=i;
-else if(a=='mk'){OS.push({id:101+OS.length,c:'Novo veículo',s:SV[S.d.sv],v:PR[S.d.sv],st:0});S={t:'os',s:0,d:null};toast('OS criada ✔')}
-else if(a=='m')EST[i][1]=Math.max(0,EST[i][1]-1);
-else if(a=='p')EST[i][1]++;
-else if(a=='pv'){PV[i].d=1-PV[i].d;toast('Atualizado ✔')}
-else if(a=='tst')toast('Retorno agendado ✔');
-draw()};
-draw();
-</script>
+// State Management
+var currentApp = 'gestao';
 
+// Gestao App Data
+var OS=[{id:101,c:'HB20',s:'Polimento',v:450,st:0},{id:102,c:'Onix',s:'Vitrificação',v:1200,st:1},{id:103,c:'Corolla',s:'Lavagem',v:180,st:2}];
+var ST=['Aguardando','Em andamento','Concluído'];
+var STC=['#f59e0b','#22d3ee','#10b981'];
+var NEWCARS=[['Civic','Lavagem',150],['Compass','Polimento',500],['Hilux','Vitrificação',1300],['Gol','Higienização',220]];
+var newIdx=0;
+
+// Agendamento App Data
+var BARBERS=['Lucas','Matheus','Gabriel'];
+var TIMES=['14:00','15:00','16:30','18:00'];
+var selectedBarber=0, selectedTime=0;
+
+// Cardapio App Data
+var CART=[];
+var MENU=[
+{n:'Vórtex Burger',p:32,d:'Blend 180g, queijo cheddar, bacon'},
+{n:'Chicken Crispy',p:28,d:'Frango empanado, maionese artesanal'},
+{n:'Batata Rústica',p:18,d:'Porção com alecrim e molho da casa'},
+{n:'Refrigerante Lata',p:6,d:'350ml gelado'}
+];
+
+function toggleDrawer(){
+document.getElementById('mobileDrawer').classList.toggle('open');
+}
+function openModal(){
+document.getElementById('projectModal').style.display='flex';
+}
+function closeModal(){
+document.getElementById('projectModal').style.display='none';
+}
+function sendProjectProposal(){
+var name = document.getElementById('projName').value || 'Não informado';
+var type = document.getElementById('projType').value;
+var desc = document.getElementById('projDesc').value || 'Sem descrição adicional';
+var msg = "Olá! Vim pelo site da Vórtex Studio e gostaria de uma análise para meu projeto:\n\n" +
+"Nome/Empresa: " + name + "\n" +
+"Segmento: " + type + "\n" +
+"Descrição: " + desc;
+var url = "https://wa.me/5571984341024?text=" + encodeURIComponent(msg);
+window.open(url, '_blank');
+closeModal();
+}
+var toastTimer;
+function toast(m){
+var e=document.getElementById('tst');
+e.textContent=m;
+e.style.opacity=1;
+clearTimeout(toastTimer);
+toastTimer=setTimeout(function(){e.style.opacity=0},1500);
+}
+function money(n){return 'R$ '+n.toLocaleString('pt-BR')}
+
+function switchApp(app){
+currentApp = app;
+document.querySelectorAll('.phone-tab').forEach(function(t){t.classList.remove('active')});
+document.getElementById('tab-'+app).classList.add('active');
+drawApp();
+}
+
+/* Gestão */
+function advanceOS(i){
+OS[i].st=(OS[i].st+1)%3;
+toast('Status: '+ST[OS[i].st]);
+drawApp();
+}
+function addOS(){
+var n=NEWCARS[newIdx%NEWCARS.length];
+newIdx++;
+OS.unshift({id:200+newIdx,c:n[0],s:n[1],v:n[2],st:0});
+toast('Ordem de serviço criada!');
+drawApp();
+}
+
+/* Agendamento */
+function pickBarber(i){selectedBarber=i;drawApp()}
+function pickTime(i){selectedTime=i;drawApp()}
+function confirmBooking(){
+toast('Agendado com '+BARBERS[selectedBarber]+' às '+TIMES[selectedTime]+'!');
+}
+
+/* Cardápio */
+function cartTotal(){
+return MENU.reduce(function(a,m,i){return a+(CART[i]||0)*m.p},0);
+}
+function cartCount(){
+return MENU.reduce(function(a,m,i){return a+(CART[i]||0)},0);
+}
+function changeQty(i,d){
+CART[i]=Math.max(0,(CART[i]||0)+d);
+drawApp();
+}
+function sendOrder(){
+if(!cartCount()){toast('Adicione um item ao pedido');return}
+toast('Pedido enviado ao WhatsApp!');
+CART=[];
+setTimeout(drawApp,1600);
+}
+
+function drawApp(){
+var ah = document.getElementById('ah');
+var ab = document.getElementById('ab');
+var h = '';
+
+if(currentApp === 'gestao'){
+ah.innerHTML = '<div>DIGÃO<small>ESTÉTICA AUTOMOTIVA</small></div>';
+var fat = OS.reduce(function(a,o){return a+(o.st==2?o.v:0)},2000);
+h = '<div class="lbl">PAINEL DE CONTROLE</div>'+
+'<div class="os"><span>Faturamento Hoje</span><em>'+money(fat)+'</em></div>'+
+'<div class="lbl" style="margin:12px 0 6px">PÁTIO AGORA <span style="opacity:.6">(toque para mudar o status)</span></div>'+
+OS.map(function(o,i){
+return '<div class="os tap" onclick="advanceOS('+i+')"><span>'+o.c+' • <small>'+o.s+'</small><br><span class="badge" style="background:'+STC[o.st]+'22;color:'+STC[o.st]+'">'+ST[o.st]+'</span></span><em>'+money(o.v)+'</em></div>';
+}).join('')+
+'<button class="act" onclick="addOS()">+ Nova Ordem de Serviço</button>';
+}
+else if(currentApp === 'agendamento'){
+ah.innerHTML = '<div>VÓRTEX<small>BARBEARIA & ESTILO</small></div>';
+h = '<div class="lbl">SELECIONE O PROFISSIONAL</div>'+
+'<div style="display:flex;gap:6px;margin-bottom:12px">'+
+BARBERS.map(function(b,i){
+return '<button class="chip" onclick="pickBarber('+i+')" style="background:'+(selectedBarber==i?'var(--br)':'#181b28')+'">'+b+'</button>';
+}).join('')+
+'</div>'+
+'<div class="lbl">HORÁRIOS DISPONÍVEIS HOJE</div>'+
+'<div class="times">'+
+TIMES.map(function(t,i){
+return '<button class="chip" onclick="pickTime('+i+')" style="background:'+(selectedTime==i?'var(--br)':'#181b28')+'">'+t+'</button>';
+}).join('')+
+'</div>'+
+'<div class="os"><span>Serviço</span><em>Corte + Barba</em></div>'+
+'<div class="os"><span>Sinal via Pix</span><em>R$ 20</em></div>'+
+'<button class="act" onclick="confirmBooking()">Confirmar agendamento</button>';
+}
+else {
+ah.innerHTML = '<div>VÓRTEX<small>BURGER & DELIVERY</small></div>';
+h = '<div class="lbl">CARDÁPIO</div>'+
+MENU.map(function(m,i){
+var q=CART[i]||0;
+return '<div class="os"><span style="max-width:55%"><b>'+m.n+'</b><br><small style="color:var(--mu)">'+m.d+'</small><br><em style="font-size:11px">'+money(m.p)+'</em></span>'+
+'<span class="qty"><button class="minus" onclick="changeQty('+i+',-1)">−</button><b>'+q+'</b><button onclick="changeQty('+i+',1)">+</button></span></div>';
+}).join('')+
+'<div class="os" style="margin-top:12px"><span>Total ('+cartCount()+' itens)</span><em>'+money(cartTotal())+'</em></div>'+
+'<button class="act" style="background:var(--gr)" onclick="sendOrder()">Enviar pedido no WhatsApp</button>';
+}
+ab.innerHTML = h;
+}
+
+drawApp();
+</script>
 </body>
 </html>
