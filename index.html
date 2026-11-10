@@ -57,6 +57,16 @@ header{position:fixed;top:14px;left:0;right:0;z-index:1000;display:flex;justify-
 .btn.ghost{background:rgba(255,255,255,.04);box-shadow:0 0 0 1px var(--bd) inset;color:var(--tx)}
 .btn.ghost:hover{box-shadow:0 0 0 1px var(--bd2) inset,0 0 20px rgba(34,211,238,.2)}
 
+.btn{white-space:nowrap;text-align:center;position:relative;z-index:2}
+.hdr .logo{min-width:0}
+.cta .btn{flex:0 1 auto}
+@media(max-width:520px){
+  .cta{flex-direction:column;align-items:stretch}
+  .cta .btn{width:100%;white-space:normal}
+  .hdr{padding:9px 10px 9px 14px}
+  .hdr .btn{padding:10px 14px;font-size:13px}
+}
+
 /* ===== Hero ===== */
 .hero{padding:150px 0 50px}
 .hero-g{display:grid;grid-template-columns:1.15fr .85fr;gap:30px;align-items:center}
@@ -487,6 +497,19 @@ document.getElementById('chips').addEventListener('click',function(e){
   });
 });
 
+/* ===== Links do WhatsApp (abre em nova aba; se bloqueado, abre na mesma) ===== */
+function openWhats(url){
+  var w=null;
+  try{w=window.open(url,'_blank','noopener')}catch(e){}
+  if(!w){window.location.href=url}
+}
+document.addEventListener('click',function(e){
+  var a=e.target.closest&&e.target.closest('a[href^="https://wa.me/"]');
+  if(!a) return;
+  e.preventDefault();
+  openWhats(a.href);
+});
+
 /* ===== Modal ===== */
 function openModal(){document.getElementById('projectModal').style.display='flex'}
 function closeModal(){document.getElementById('projectModal').style.display='none'}
@@ -497,7 +520,7 @@ function sendProjectProposal(){
   var desc=document.getElementById('projDesc').value||'Sem descrição adicional';
   var msg="Olá! Vim pelo site da Vórtex Studio e gostaria de uma análise para meu projeto:\n\n"+
     "Nome/Empresa: "+name+"\n"+"Segmento: "+type+"\n"+"Descrição: "+desc;
-  window.open("https://wa.me/5571984341024?text="+encodeURIComponent(msg),'_blank');
+  openWhats("https://wa.me/5571984341024?text="+encodeURIComponent(msg));
   closeModal();
 }
 
