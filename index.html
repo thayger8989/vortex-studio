@@ -64,15 +64,14 @@ h2{font-size:clamp(24px,4vw,34px);text-align:center}
 .c{background:var(--bg);border:1px solid var(--bd);border-radius:18px;padding:24px;transition:all .3s ease;display:flex;flex-direction:column;justify-content:space-between}
 .c:hover{transform:translateY(-4px);border-color:var(--br);box-shadow:0 12px 30px rgba(0,0,0,0.4)}
 .c h3{margin-bottom:8px;font-size:18px}.c p{color:var(--mu);font-size:14px;line-height:1.6}
-/* Interactive Phone Mockup */
-.demo{display:grid;grid-template-columns:1fr 1.1fr;gap:40px;align-items:center}
-@media(max-width:850px){.demo{grid-template-columns:1fr}}
-.phone-container{display:flex;flex-direction:column;align-items:center}
-.phone-nav-tabs{display:flex;gap:8px;background:rgba(255,255,255,0.05);padding:6px;border-radius:14px;margin-bottom:16px;border:1px solid var(--bd)}
-.phone-tab{background:none;border:none;color:var(--mu);padding:8px 14px;border-radius:10px;font-weight:600;font-size:12px;cursor:pointer;transition:all .2s}
+/* Direct Interactive Phone Mockup Section */
+.demo-center{display:flex;flex-direction:column;align-items:center;width:100%}
+.phone-container{display:flex;flex-direction:column;align-items:center;width:100%;max-width:360px;margin:0 auto}
+.phone-nav-tabs{display:flex;gap:6px;background:rgba(255,255,255,0.05);padding:6px;border-radius:14px;margin-bottom:16px;border:1px solid var(--bd);width:100%;justify-content:center}
+.phone-tab{background:none;border:none;color:var(--mu);padding:8px 12px;border-radius:10px;font-weight:600;font-size:12px;cursor:pointer;transition:all .2s;flex:1;text-align:center}
 .phone-tab.active{background:var(--br);color:#fff}
-.phone{width:100%;max-width:320px;background:#000;border:8px solid #252836;border-radius:42px;padding:12px;box-shadow:0 25px 50px rgba(0,0,0,0.6)}
-.scr{background:#0d0e15;border-radius:30px;height:500px;overflow:hidden;position:relative;display:flex;flex-direction:column}
+.phone{width:100%;background:#000;border:8px solid #252836;border-radius:42px;padding:12px;box-shadow:0 25px 50px rgba(0,0,0,0.6)}
+.scr{background:#0d0e15;border-radius:30px;height:520px;overflow:hidden;position:relative;display:flex;flex-direction:column}
 .ah{background:#12141f;border-bottom:1px solid #262a3d;padding:14px;font-weight:800;letter-spacing:.05em;display:flex;align-items:center}
 .ah small{display:block;color:var(--cy);font-size:9px;letter-spacing:.2em}
 .ab{padding:14px;flex:1;overflow:auto}
@@ -116,7 +115,7 @@ footer{border-top:1px solid var(--bd);padding:40px 0;text-align:center;color:var
 <div class="hdr-w">
 <a href="#" class="logo">VÓRTEX<small>STUDIO PREMIUM</small></a>
 <nav>
-<a href="#demos">Demonstrações</a>
+<a href="#demos">Demonstração</a>
 <a href="#solucoes">Soluções</a>
 <a href="#vantagens">Vantagens</a>
 <a href="#faq">Dúvidas</a>
@@ -130,7 +129,7 @@ footer{border-top:1px solid var(--bd);padding:40px 0;text-align:center;color:var
 <!-- Mobile Drawer -->
 <div class="drawer" id="mobileDrawer">
 <button class="close-btn" onclick="toggleDrawer()" aria-label="Fechar menu">✕</button>
-<a href="#demos" onclick="toggleDrawer()">Demonstrações</a>
+<a href="#demos" onclick="toggleDrawer()">Demonstração</a>
 <a href="#solucoes" onclick="toggleDrawer()">Soluções</a>
 <a href="#vantagens" onclick="toggleDrawer()">Vantagens</a>
 <a href="#faq" onclick="toggleDrawer()">Dúvidas</a>
@@ -142,7 +141,7 @@ footer{border-top:1px solid var(--bd);padding:40px 0;text-align:center;color:var
 <h1>A tecnologia do seu negócio na <span>palma da mão</span> dos seus clientes.</h1>
 <p>Aplicativos web modernos, rápidos e intuitivos. Funcionam em qualquer celular ou computador, direto pelo navegador, sem baixar nada na loja de apps.</p>
 <div class="cta">
-<a class="btn" href="#demos">Ver protótipo interativo</a>
+<a class="btn" href="#demos">Testar Web App ao vivo</a>
 <a class="btn g" href="https://wa.me/5571984341024?text=Ol%C3%A1!%20Gostaria%20de%20um%20or%C3%A7amento%20para%20um%20Web%20App." target="_blank" rel="noopener">WhatsApp (71) 98434-1024</a>
 <a class="btn ig" href="https://instagram.com/Vortex.studio.premium" target="_blank" rel="noopener">Instagram</a>
 </div>
@@ -153,43 +152,16 @@ footer{border-top:1px solid var(--bd);padding:40px 0;text-align:center;color:var
 <div><b>Sob medida</b><small>Para o seu segmento</small></div>
 </div>
 </div>
-<!-- Interactive Demos -->
+<!-- Interactive Demos Direct Phone View -->
 <section id="demos" class="alt"><div class="w">
-<h2>Experimente na prática</h2>
-<p class="sub">Toque em qualquer uma das soluções abaixo para testar o aplicativo instantaneamente no simulador.</p>
-<div class="demo">
-<div>
-  <!-- Seletores interativos diretos -->
-  <div class="c tap" onclick="switchApp('gestao')" style="border-color:var(--br); cursor:pointer; margin-bottom:12px;">
-    <h3>🚗 Gestão de Pátio / Oficina</h3>
-    <p>Controle ordens de serviço, faturamento diário e status de veículos.</p>
-    <span style="font-size:12px;color:var(--cy);font-weight:700;margin-top:8px;display:inline-block">Testar esta solução →</span>
-  </div>
-  <div class="c tap" onclick="switchApp('agendamento')" style="cursor:pointer; margin-bottom:12px;">
-    <h3>✂️ Agendamento para Barbearia</h3>
-    <p>Escolha de profissionais, horários vagos e confirmação rápida.</p>
-    <span style="font-size:12px;color:var(--cy);font-weight:700;margin-top:8px;display:inline-block">Testar esta solução →</span>
-  </div>
-  <div class="c tap" onclick="switchApp('cardapio')" style="cursor:pointer; margin-bottom:16px;">
-    <h3>🍔 Cardápio & Delivery</h3>
-    <p>Seleção de produtos, cálculo de carrinho e envio direto para o WhatsApp.</p>
-    <span style="font-size:12px;color:var(--cy);font-weight:700;margin-top:8px;display:inline-block">Testar esta solução →</span>
-  </div>
-
-  <div class="c" style="background:rgba(99,102,241,0.05);border-color:rgba(99,102,241,0.2)">
-    <div>
-      <h3>Tem outra ideia de projeto?</h3>
-      <p>Desenvolvemos sistemas personalizados de acordo com a necessidade operacional da sua empresa.</p>
-    </div>
-    <button class="btn g" style="margin-top:14px" onclick="openModal()">Solicitar análise de projeto →</button>
-  </div>
-</div>
-<!-- Phone Simulador -->
+<h2>Teste o Aplicativo na Prática</h2>
+<p class="sub">Alterne entre os segmentos abaixo e interaja diretamente com o webapp como se estivesse instalado no seu celular.</p>
+<div class="demo-center">
 <div class="phone-container">
 <div class="phone-nav-tabs">
-<button class="phone-tab active" id="tab-gestao" onclick="switchApp('gestao')">Gestão</button>
-<button class="phone-tab" id="tab-agendamento" onclick="switchApp('agendamento')">Agendamento</button>
-<button class="phone-tab" id="tab-cardapio" onclick="switchApp('cardapio')">Cardápio</button>
+<button class="phone-tab active" id="tab-gestao" onclick="switchApp('gestao')">🚗 Gestão</button>
+<button class="phone-tab" id="tab-agendamento" onclick="switchApp('agendamento')">✂️ Agendamento</button>
+<button class="phone-tab" id="tab-cardapio" onclick="switchApp('cardapio')">🍔 Cardápio</button>
 </div>
 <div class="phone">
 <div class="scr" id="scr">
@@ -198,6 +170,9 @@ footer{border-top:1px solid var(--bd);padding:40px 0;text-align:center;color:var
 <div id="tst"></div>
 </div>
 </div>
+</div>
+<div style="margin-top:30px;text-align:center">
+<button class="btn g" onclick="openModal()">Solicitar projeto personalizado para sua empresa →</button>
 </div>
 </div>
 </div></section>
@@ -350,14 +325,6 @@ document.querySelectorAll('.phone-tab').forEach(function(t){t.classList.remove('
 var tab = document.getElementById('tab-'+app);
 if(tab) tab.classList.add('active');
 drawApp();
-
-// Scroll automático no telemóvel para o simulador
-if(window.innerWidth <= 850) {
-var phoneElement = document.querySelector('.phone-container');
-if(phoneElement) {
-phoneElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-}
-}
 }
 
 /* Gestão */
@@ -439,8 +406,8 @@ h = '<div class="lbl">CARDÁPIO</div>'+
 MENU.map(function(m,i){
 var q=CART[i]||0;
 return '<div class="os"><span style="max-width:55%"><b>'+m.n+'</b><br><small style="color:var(--mu)">'+m.d+'</small><br><em style="font-size:11px">'+money(m.p)+'</em></span>'+
-'<span class="qty"><button class="minus" onclick="changeQty('+i+',-1)">−</button><b>'+q+'</b><button onclick="changeQty('+i+',1)">+</button></span></div>';
-}.join(''))+
+'<span class="qty"><button class="minus" onclick="changeQty('+i,+'-1)">−</button><b>'+q+'</b><button onclick="changeQty('+i+',1)">+</button></span></div>';
+}).join('')+
 '<div class="os" style="margin-top:12px"><span>Total ('+cartCount()+' itens)</span><em>'+money(cartTotal())+'</em></div>'+
 '<button class="act" style="background:var(--gr)" onclick="sendOrder()">Enviar pedido no WhatsApp</button>';
 }
