@@ -337,4 +337,103 @@ e.style.opacity=1;
 clearTimeout(toastTimer);
 toastTimer=setTimeout(function(){e.style.opacity=0},1500);
 }
-function money(n){return 'R$
+function money(n){return 'R$ '+n.toLocaleString('pt-BR')}
+
+function switchApp(app){
+currentApp = app;
+document.querySelectorAll('.phone-tab').forEach(function(t){t.classList.remove('active')});
+document.getElementById('tab-'+app).classList.add('active');
+drawApp();
+}
+
+/* Gestão */
+function advanceOS(i){
+OS[i].st=(OS[i].st+1)%3;
+toast('Status: '+ST[OS[i].st]);
+drawApp();
+}
+function addOS(){
+var n=NEWCARS[newIdx%NEWCARS.length];
+newIdx++;
+OS.unshift({id:200+newIdx,c:n[0],s:n[1],v:n[2],st:0});
+toast('Ordem de serviço criada!');
+drawApp();
+}
+
+/* Agendamento */
+function pickBarber(i){selectedBarber=i;drawApp()}
+function pickTime(i){selectedTime=i;drawApp()}
+function confirmBooking(){
+toast('Agendado com '+BARBERS[selectedBarber]+' às '+TIMES[selectedTime]+'!');
+}
+
+/* Cardápio */
+function cartTotal(){
+return MENU.reduce(function(a,m,i){return a+(CART[i]||0)*m.p},0);
+}
+function cartCount(){
+return MENU.reduce(function(a,m,i){return a+(CART[i]||0)},0);
+}
+function changeQty(i,d){
+CART[i]=Math.max(0,(CART[i]||0)+d);
+drawApp();
+}
+function sendOrder(){
+if(!cartCount()){toast('Adicione um item ao pedido');return}
+toast('Pedido enviado ao WhatsApp!');
+CART=[];
+setTimeout(drawApp,1600);
+}
+
+function drawApp(){
+var ah = document.getElementById('ah');
+var ab = document.getElementById('ab');
+var h = '';
+
+if(currentApp === 'gestao'){
+ah.innerHTML = '<div>DIGÃO<small>ESTÉTICA AUTOMOTIVA</small></div>';
+var fat = OS.reduce(function(a,o){return a+(o.st==2?o.v:0)},2000);
+h = '<div class="lbl">PAINEL DE CONTROLE</div>'+
+'<div class="os"><span>Faturamento Hoje</span><em>'+money(fat)+'</em></div>'+
+'<div class="lbl" style="margin:12px 0 6px">PÁTIO AGORA <span style="opacity:.6">(toque para mudar o status)</span></div>'+
+OS.map(function(o,i){
+return '<div class="os tap" onclick="advanceOS('+i+')"><span>'+o.c+' • <small>'+o.s+'</small><br><span class="badge" style="background:'+STC[o.st]+'22;color:'+STC[o.st]+'">'+ST[o.st]+'</span></span><em>'+money(o.v)+'</em></div>';
+}).join('')+
+'<button class="act" onclick="addOS()">+ Nova Ordem de Serviço</button>';
+}
+else if(currentApp === 'agendamento'){
+ah.innerHTML = '<div>VÓRTEX<small>BARBEARIA & ESTILO</small></div>';
+h = '<div class="lbl">SELECIONE O PROFISSIONAL</div>'+
+'<div style="display:flex;gap:6px;margin-bottom:12px">'+
+BARBERS.map(function(b,i){
+return '<button class="chip" onclick="pickBarber('+i+')" style="background:'+(selectedBarber==i?'var(--br)':'#181b28')+'">'+b+'</button>';
+}).join('')+
+'</div>'+
+'<div class="lbl">HORÁRIOS DISPONÍVEIS HOJE</div>'+
+'<div class="times">'+
+TIMES.map(function(t,i){
+return '<button class="chip" onclick="pickTime('+i+')" style="background:'+(selectedTime==i?'var(--br)':'#181b28')+'">'+t+'</button>';
+}).join('')+
+'</div>'+
+'<div class="os"><span>Serviço</span><em>Corte + Barba</em></div>'+
+'<div class="os"><span>Sinal via Pix</span><em>R$ 20</em></div>'+
+'<button class="act" onclick="confirmBooking()">Confirmar agendamento</button>';
+}
+else {
+ah.innerHTML = '<div>VÓRTEX<small>BURGER & DELIVERY</small></div>';
+h = '<div class="lbl">CARDÁPIO</div>'+
+MENU.map(function(m,i){
+var q=CART[i]||0;
+return '<div class="os"><span style="max-width:55%"><b>'+m.n+'</b><br><small style="color:var(--mu)">'+m.d+'</small><br><em style="font-size:11px">'+money(m.p)+'</em></span>'+
+'<span class="qty"><button class="minus" onclick="changeQty('+i+',-1)">−</button><b>'+q+'</b><button onclick="changeQty('+i+',1)">+</button></span></div>';
+}).join('')+
+'<div class="os" style="margin-top:12px"><span>Total ('+cartCount()+' itens)</span><em>'+money(cartTotal())+'</em></div>'+
+'<button class="act" style="background:var(--gr)" onclick="sendOrder()">Enviar pedido no WhatsApp</button>';
+}
+ab.innerHTML = h;
+}
+
+drawApp();
+</script>
+</body>
+</html>
