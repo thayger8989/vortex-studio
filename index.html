@@ -156,28 +156,33 @@ footer{border-top:1px solid var(--bd);padding:40px 0;text-align:center;color:var
 <!-- Interactive Demos -->
 <section id="demos" class="alt"><div class="w">
 <h2>Experimente na prática</h2>
-<p class="sub">Alterne entre os modelos no topo do celular e teste o funcionamento em tempo real.</p>
+<p class="sub">Toque em qualquer uma das soluções abaixo para testar o aplicativo instantaneamente no simulador.</p>
 <div class="demo">
 <div>
-<div class="c" style="border-color:var(--br)">
-<div>
-<span style="font-size:11px;color:var(--cy);font-weight:700;text-transform:uppercase">Protótipos Ativos</span>
-<h3 style="margin-top:4px">Navegue pelas 3 Soluções</h3>
-<p>Experimente a gestão de pátio automotivo, o agendamento de clientes para barbearia ou o fluxo de pedidos de um cardápio digital.</p>
-</div>
-<div style="margin-top:20px;display:flex;gap:10px;flex-wrap:wrap">
-<button class="btn outline" onclick="switchApp('gestao')">Ver Gestão</button>
-<button class="btn outline" onclick="switchApp('agendamento')">Ver Agendamento</button>
-<button class="btn outline" onclick="switchApp('cardapio')">Ver Cardápio</button>
-</div>
-</div>
-<div class="c" style="margin-top:16px;background:rgba(99,102,241,0.05);border-color:rgba(99,102,241,0.2)">
-<div>
-<h3>Tem outra ideia de projeto?</h3>
-<p>Desenvolvemos sistemas personalizados de acordo com a necessidade operacional da sua empresa.</p>
-</div>
-<button class="btn g" style="margin-top:14px" onclick="openModal()">Solicitar análise de projeto →</button>
-</div>
+  <!-- Seletores interativos diretos -->
+  <div class="c tap" onclick="switchApp('gestao')" style="border-color:var(--br); cursor:pointer; margin-bottom:12px;">
+    <h3>🚗 Gestão de Pátio / Oficina</h3>
+    <p>Controle ordens de serviço, faturamento diário e status de veículos.</p>
+    <span style="font-size:12px;color:var(--cy);font-weight:700;margin-top:8px;display:inline-block">Testar esta solução →</span>
+  </div>
+  <div class="c tap" onclick="switchApp('agendamento')" style="cursor:pointer; margin-bottom:12px;">
+    <h3>✂️ Agendamento para Barbearia</h3>
+    <p>Escolha de profissionais, horários vagos e confirmação rápida.</p>
+    <span style="font-size:12px;color:var(--cy);font-weight:700;margin-top:8px;display:inline-block">Testar esta solução →</span>
+  </div>
+  <div class="c tap" onclick="switchApp('cardapio')" style="cursor:pointer; margin-bottom:16px;">
+    <h3>🍔 Cardápio & Delivery</h3>
+    <p>Seleção de produtos, cálculo de carrinho e envio direto para o WhatsApp.</p>
+    <span style="font-size:12px;color:var(--cy);font-weight:700;margin-top:8px;display:inline-block">Testar esta solução →</span>
+  </div>
+
+  <div class="c" style="background:rgba(99,102,241,0.05);border-color:rgba(99,102,241,0.2)">
+    <div>
+      <h3>Tem outra ideia de projeto?</h3>
+      <p>Desenvolvemos sistemas personalizados de acordo com a necessidade operacional da sua empresa.</p>
+    </div>
+    <button class="btn g" style="margin-top:14px" onclick="openModal()">Solicitar análise de projeto →</button>
+  </div>
 </div>
 <!-- Phone Simulador -->
 <div class="phone-container">
@@ -342,7 +347,8 @@ function money(n){return 'R$ '+n.toLocaleString('pt-BR')}
 function switchApp(app){
 currentApp = app;
 document.querySelectorAll('.phone-tab').forEach(function(t){t.classList.remove('active')});
-document.getElementById('tab-'+app).classList.add('active');
+var tab = document.getElementById('tab-'+app);
+if(tab) tab.classList.add('active');
 drawApp();
 }
 
