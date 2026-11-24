@@ -147,6 +147,25 @@ h2{font-size:clamp(24px,4vw,36px);text-align:center;letter-spacing:-.01em}
 .qty button.minus{background:#1d2552}
 .qty b{min-width:14px;text-align:center;font-size:12px}
 
+
+/* ===== Projetos entregues ===== */
+.proj{display:grid;grid-template-columns:1.15fr .85fr;gap:34px;align-items:center}
+.shot{margin:0;border-radius:22px;overflow:hidden;background:#02030a;border:1px solid var(--bd2);box-shadow:0 0 0 1px rgba(84,120,255,.25),0 0 50px rgba(59,108,255,.28),0 24px 50px rgba(0,0,0,.55)}
+.shot img,.shot video{display:block;width:100%;height:auto;background:#02030a}
+.proj-txt h3{font-size:clamp(21px,3vw,27px);line-height:1.2;letter-spacing:-.01em}
+.proj-txt .by{color:var(--cy);font-size:13px;font-weight:600;margin-bottom:8px;display:block}
+.proj-txt p{color:var(--mu);margin-top:12px;font-size:15px}
+.feats{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;list-style:none;padding:0}
+.feats li{padding:7px 13px;border-radius:99px;font-size:12.5px;font-weight:600;border:1px solid var(--bd);background:rgba(255,255,255,.04);color:var(--tx)}
+.proj-txt .cta{margin-top:24px}
+.media-g{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:34px}
+.media-g figcaption{padding:12px 4px 0;font-size:13px;color:var(--mu)}
+.media-g figcaption b{display:block;color:var(--tx);font-size:14px;margin-bottom:2px}
+@media(max-width:850px){
+  .proj{grid-template-columns:1fr}
+  .media-g{grid-template-columns:1fr}
+}
+
 /* ===== Como trabalhamos ===== */
 .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;position:relative;margin-top:48px}
 .steps::before{content:"";position:absolute;top:27px;left:12%;right:12%;height:2px;background:linear-gradient(90deg,transparent,var(--br),var(--cy),var(--br),transparent);opacity:.5}
@@ -257,6 +276,7 @@ footer{border-top:1px solid var(--bd);padding:40px 0;text-align:center;color:var
       <span class="pill" id="pill"></span>
       <a href="#top" data-t="top">Início</a>
       <a href="#demos" data-t="demos">Demonstração</a>
+      <a href="#projetos" data-t="projetos">Projetos</a>
       <a href="#solucoes" data-t="solucoes">Soluções</a>
       <a href="#vantagens" data-t="vantagens">Vantagens</a>
       <a href="#contato" data-t="contato">Contato</a>
@@ -269,6 +289,7 @@ footer{border-top:1px solid var(--bd);padding:40px 0;text-align:center;color:var
 <nav class="dock" id="dock" aria-label="Navegação">
   <a href="#top" data-t="top" class="active"><svg class="i"><use href="#i-home"/></svg><span>Início</span></a>
   <a href="#demos" data-t="demos"><svg class="i"><use href="#i-phone"/></svg><span>Demo</span></a>
+  <a href="#projetos" data-t="projetos"><svg class="i"><use href="#i-dash"/></svg><span>Projetos</span></a>
   <a href="#solucoes" data-t="solucoes"><svg class="i"><use href="#i-layers"/></svg><span>Serviços</span></a>
   <a href="#contato" data-t="contato"><svg class="i"><use href="#i-mail"/></svg><span>Contato</span></a>
 </nav>
@@ -339,6 +360,36 @@ footer{border-top:1px solid var(--bd);padding:40px 0;text-align:center;color:var
     </div>
   </div>
   <div style="margin-top:28px;text-align:center" class="rv"><button class="btn g" style="display:none" onclick="openModal()">Solicitar projeto</button></div>
+</div></section>
+
+<!-- Projetos entregues -->
+<section id="projetos" data-sec="projetos"><div class="w">
+  <span class="eyebrow">Projetos entregues</span>
+  <h2>Sistemas que já estão rodando</h2>
+  <p class="sub">Veja um projeto real, feito pela Vórtex e usado no dia a dia de uma empresa.</p>
+  <div class="proj">
+    <figure class="shot rv"><img src="digao-sistema-menu.jpg" width="1600" height="900" alt="Tela principal do sistema Digão Estética Automotiva rodando em um tablet Windows" loading="lazy"></figure>
+    <div class="proj-txt rv">
+      <span class="by">Digão Estética Automotiva · Versão 2.0</span>
+      <h3>Sistema de gestão para estética automotiva</h3>
+      <p>Receitas, despesas, agenda e avarias dos veículos em um só lugar. Roda direto no tablet ou no computador da oficina, com backup do banco de dados.</p>
+      <ul class="feats">
+        <li>Receitas e despesas</li>
+        <li>Painel de balanceamento</li>
+        <li>Histórico mensal e anual</li>
+        <li>Avarias com checklist e fotos</li>
+        <li>Agenda de atendimentos</li>
+        <li>Cadastros de clientes e veículos</li>
+        <li>Backup</li>
+      </ul>
+      <div class="cta"><a class="btn g" href="https://wa.me/5571984341024?text=Ol%C3%A1%21%20Vi%20o%20sistema%20do%20Dig%C3%A3o%20Est%C3%A9tica%20no%20site%20da%20V%C3%B3rtex%20e%20quero%20um%20sistema%20assim%20para%20o%20meu%20neg%C3%B3cio." target="_blank" rel="noopener">Quero um sistema assim</a></div>
+    </div>
+  </div>
+  <div class="media-g">
+    <figure class="rv"><div class="shot"><video controls muted playsinline preload="none" poster="digao-sistema-uso-poster.jpg"><source src="digao-sistema-uso.mp4" type="video/mp4"></video></div><figcaption><b>O sistema em uso</b>Menus, histórico, avarias, agenda e cadastros.</figcaption></figure>
+    <figure class="rv"><div class="shot"><video controls muted playsinline preload="none" poster="digao-sistema-abertura-poster.jpg"><source src="digao-sistema-abertura.mp4" type="video/mp4"></video></div><figcaption><b>Abertura do sistema</b>Sincroniza clientes, organiza a agenda e verifica o backup.</figcaption></figure>
+    <figure class="rv"><div class="shot"><img src="digao-sistema-abertura.jpg" width="1600" height="900" alt="Tela de abertura do sistema Digão Estética Automotiva, versão 2.0" loading="lazy"></div><figcaption><b>Tela de abertura</b>Com a marca do cliente e a verificação do banco de dados.</figcaption></figure>
+  </div>
 </div></section>
 
 <!-- Soluções -->
@@ -439,7 +490,7 @@ footer{border-top:1px solid var(--bd);padding:40px 0;text-align:center;color:var
 document.documentElement.classList.add('js');
 
 /* ===== Menu: scroll-spy + indicador deslizante ===== */
-var SECS=['top','demos','solucoes','vantagens','contato'];
+var SECS=['top','demos','projetos','solucoes','vantagens','contato'];
 var menuLinks=[].slice.call(document.querySelectorAll('#menu a'));
 var dockLinks=[].slice.call(document.querySelectorAll('#dock a'));
 var pill=document.getElementById('pill');
